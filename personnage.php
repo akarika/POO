@@ -10,9 +10,9 @@ class personnage
 {
 
     //les propiétés sont des variables
-    public $vie = 80;
+    private $vie = 80;
     //public visible de partout , dans la calasse et a l exterieur
-    public $atk = 20;
+    private $atk = 20;
     //private  accesible dans la classe UNIQUEMENT
     protected $nom;
     //accessible dans les classes qui héritent et dans la classe UNIQUEMENT
@@ -25,8 +25,26 @@ class personnage
         return $this->nom;
     }
 
+private function empecher_vie_negatif(){
+    if ($this->vie<0){
+        $this->vie=0;
+    }
+}
 
 
+
+    public function getVie(): int
+    {
+        return $this->vie;
+    }
+
+    /**
+     * @param int $vie
+     */
+    public function setVie(int $vie)
+    {
+        $this->vie = $vie;
+    }
 
 
     //méthoes -> fonction
@@ -34,6 +52,9 @@ class personnage
     {
         $this->nom = $nom;
     }
+
+
+
 
 
     public function crier()
@@ -62,7 +83,7 @@ class personnage
         $cible;//cible
 
         $cible->vie -= $this->atk;
-
+        $cible->empecher_vie_negatif();
     }
 
 

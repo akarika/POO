@@ -19,15 +19,15 @@ var_dump($merlin);
 
 
 $harry = new personnage("harry");
-$harry->vie = 60;
+$harry->setVie(5);
 
 
 
 $merlin->attaque($harry);
 if ($harry->mort()){
-    echo "harry est mort";
+    echo "harry est mort il a ".$harry->getVie()."de vie";
 }else{
-    echo "Encore debout avec ".$harry->vie."de vie";
+    echo "Encore debout avec ".$harry->getVie()."de vie";
 }
 
 var_dump($harry);
