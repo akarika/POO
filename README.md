@@ -4,7 +4,10 @@
 
   La POO est un concept où un "objet"(class) est une entitée qui possède des **attributs**($variable), et des **méthodes** (function).
 
-###Concevoir un objet
+###Concevoir un objet  
+---
+
+*c'est définir une classe...*
 
 
 Les classes contiennent la **définition** des objets que l'on va créer par la suite.
@@ -57,7 +60,7 @@ _Exemple conception _ :
 class Personnage{
 	private $vie = 100;
 	private $soin = 30;
-	public $nom;
+	public $nom = "heroe";
 	public $atk = 10;
 }
 ```
@@ -83,3 +86,40 @@ class Personnage{
 	}
 }
 ```
+###Création de l'objet
+
+Pour utiliser l'objet crée nous allons instancier   la classe précédemment conçu .
+Chaque instance de cette classe possédera ainsi tous ces attributs et méthodes. 
+```php
+$nomObjet = new nomClass;
+```
+
+Avec la classe Personnage
+```php
+$perso1 = new Personnage;
+```
+Si nous faisons affichons les informations  de `$perso1` **var_dump**(*$perso1*) et la `classPersonnage` **var_dump**(new *personnage*());
+
+<img src="http://img4.hostingpics.net/pics/679182Capturedecran20161016a015010.png" alt="Hebergeur d'image" />
+
+Nous voyons bien que l'objet `$perso1` issu de l'instanciation de `class Personnage` a conservé   tous les attributs et méthodes.
+
+---
+
+Une classe peut-être vu comme le modèle .
+
+####Accéder aux attributs et méthodes 
+
+_Pour appeler un attribut ou méthode_ :
+
+$nomObjet**->**attribut;
+Affichons le nom de l'objet perso1
+```php
+echo $perso1->nom;
+//heroe
+```
+
+
+
+
+
