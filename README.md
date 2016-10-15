@@ -2,12 +2,12 @@
 
 ### C'est quoi la POO (Programmation orientée objet)?
 
-  La POO est un concept où un "objet"(class) est une entitée qui possède des attributs($variable), et des méthodes (function).
+  La POO est un concept où un "objet"(class) est une entitée qui possède des **attributs**($variable), et des **méthodes** (function).
 
 ###Concevoir un objet
 
 
-Les classes contiennent la définition des objets que l'on va créer par la suite.
+Les classes contiennent la **définition** des objets que l'on va créer par la suite.
 > Prenons l'exemple le plus simple du monde : les gâteaux et leur moule. Le moule est unique. Il peut produire une quantité infinie de gâteaux. Dans ce cas-là, les gâteaux sont les **objets** et le moule est la **classe** : le moule va définir la forme du gâteau
 
 Dans un exemple plus concret
@@ -41,7 +41,7 @@ class nomDeClasse{
 }
 ```
 
-###### Visibilité
+##### Visibilité
 
 Les attributs de **visibilité** indique à une **méthode** ou **propriétés** sont accès.
 
