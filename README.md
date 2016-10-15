@@ -1,11 +1,11 @@
 #POO
 
-### C'est quoi la POO (Programmation orientée objet)?
+## C'est quoi la POO (Programmation orientée objet)?
 
   La POO est un concept où un "objet"(class) est une entitée qui possède des **attributs**($variable), et des **méthodes** (function).
 
-###Concevoir un objet  
----
+##Concevoir un objet  
+
 
 *c'est définir une classe...*
 
@@ -44,7 +44,7 @@ class nomDeClasse{
 }
 ```
 
-##### Visibilité
+#### Visibilité
 
 Les attributs de **visibilité** indique à une **méthode** ou **propriétés** sont accès.
 
@@ -64,7 +64,7 @@ class Personnage{
 	public $atk = 10;
 }
 ```
-##### Mais comment on accède aux attributs en dehors de la classe alors ? 
+#### Mais comment on accède aux attributs en dehors de la classe alors ? 
 On utilise des accesseurs(getter) pour accéder à aux informations(lire) , et mutateurs(setter) pour modifier les données.
 
 Pour accéder à $vie on crée la méthode : **get**nomAttribut
@@ -86,7 +86,7 @@ class Personnage{
 	}
 }
 ```
-###Création de l'objet
+##Création de l'objet
 
 Pour utiliser l'objet crée nous allons instancier   la classe précédemment conçu .
 Chaque instance de cette classe possédera ainsi tous ces attributs et méthodes. 
@@ -104,11 +104,11 @@ Si nous faisons affichons les informations  de `$perso1` **var_dump**(*$perso1*)
 
 Nous voyons bien que l'objet `$perso1` issu de l'instanciation de `class Personnage` a conservé   tous les attributs et méthodes.
 
----
+
 
 Une classe peut-être vu comme le modèle .
 
-####Accéder aux attributs et méthodes 
+###Accéder aux attributs et méthodes 
 
 _Pour appeler un attribut ou méthode_ :
 
