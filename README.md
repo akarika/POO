@@ -51,7 +51,7 @@ Les attributs de **visibilité** indique à une **méthode** ou **propriétés**
 
 ```protected``` 	 accessible à **l'intérieur** de la classe et des classes **héritées**
 
-_Exemple conception _:
+_Exemple conception _ :
 
 ```php
 class Personnage{
