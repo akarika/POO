@@ -1,4 +1,4 @@
- #POO
+#POO
 
 ### C'est quoi la POO (Programmation orientée objet)?
 
@@ -19,9 +19,11 @@ _Création d'une classe_ :
 ```php
 class nomDeClasse{
 }
-``
+
+```
 
 _Création attributs_ :
+
 
 ```php
 class nomDeClasse{
@@ -62,7 +64,7 @@ class Personnage{
 ##### Mais comment on accède aux attributs en dehors de la classe alors ? 
 On utilise des accesseurs(getter) pour accéder à aux informations(lire) , et mutateurs(setter) pour modifier les données.
 
-Pour accéder à $vie on crée la méthode : **get**NomAttribut
+Pour accéder à $vie on crée la méthode : **get**nomAttribut
 
 ```php
 class Personnage{
@@ -72,7 +74,7 @@ class Personnage{
 }
 ```
 
-Pour modifier $vie on création la méthode **set**Nom Attribut
+Pour modifier $vie on création la méthode **set**nomAttribut
 
 ```php
 class Personnage{
