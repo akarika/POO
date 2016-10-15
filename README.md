@@ -74,7 +74,7 @@ class Personnage{
 }
 ```
 
-Pour modifier $vie on création la méthode **set**nomAttribut
+Pour modifier $vie on création la méthode : **set**nomAttribut
 
 ```php
 class Personnage{
