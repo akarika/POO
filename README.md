@@ -73,6 +73,7 @@ Pour accéder à $vie on crée la méthode : **get**nomAttribut
 class Personnage{
 	public function getVie(){
 		return $this->vie = $vie;
+//retourne la vie de l'objet courant c-a-d `$perso1`
 	}
 }
 ```
@@ -83,9 +84,14 @@ Pour modifier $vie on création la méthode : **set**nomAttribut
 class Personnage{
 	public function setVie($vie){
 		return $this->vie = $vie;
+//modofie et retourne la vie de l'objet courant c-a-d `$perso1`
 	}
 }
 ```
+Nous utilisons le mot **$this** pour faire référence à l'objet courant utilisé
+
+
+
 ##Création de l'objet
 
 Pour utiliser l'objet crée nous allons instancier   la classe précédemment conçu .
@@ -156,7 +162,7 @@ L'un des gros avantages de la POO est que l'on peut **masquer** le code à **l'u
 
 L'utilisateur **d'une classe** n'a pas forcément à savoir de quelle façon sont structurées les données dans l'objet, cela signifie qu'un utilisateur n'a pas à connaître l'implémentation. Ainsi, en **interdisant** l'utilisateur de **modifier** directement les attributs, et en **l'obligeant** à utiliser les fonctions **définies** pour les modifier (appelées interfaces), on est capable de **s'assurer** de l'intégrité des données (on pourra par exemple **s'assurer** que le **type** des données fournies est conforme à nos attentes, ou encore que les données se trouvent bien dans l'intervalle attendu). 
 
-Reprenons tous le code de la class Personnage documenté 
+- Reprenons tous le code de la class Personnage documenté 
 
 ```php
 
@@ -213,8 +219,55 @@ class Personnage
 
 }
 $perso1 = new personnage;
+$perso1->setVie("Heroe");
 ```
 IL est très fortement conseillé de **documenter** .Un code bien **documenté** est un code facile à **comprendre**. De plus les IDE modernes sont capable de comprendre et lire ces commentaire 
 
+###Le constructeur 
 
+Le rôle d'une fonction constructeur est de construire l'objet, c'est-à-dire de le préparer à une première utilisation. 
 
+Nous voulons créer un personnage en initialisant des valeurs dés son instanciation.
+
+```php
+class Personnage {
+...
+public function __construct($name, $atk)
+    {
+        $this->setNom($name);
+        $this->setAtk($atk);
+
+    }
+}
+```
+Maintenant dés la création de l'objet nous pouvons passer des paramètres 
+
+```php
+$perso1 = new personnage("Heroe",20);
+$perso2 = new Personnage("Power",35);
+```
+
+Si nous faisons un **var_dump**(*$perso1*) et **var_dump**(*$perso2*)
+
+<img src="http://img4.hostingpics.net/pics/150281Capturedecran20161016a131531.png" border="0" alt="Hebergeur d'image" />
+
+Comment faire interagir les deux personnages ?
+
+Nous voulons que perso1 attaque perso 2.
+
+Créons une méthode attaque qui prend comme paramètre **l'attaqué**.
+
+```php
+class Personnage{
+	...
+	public function attaque($attaqué)
+	{
+       $attaqué->vie-=$this->atk;
+	}
+}
+$perso1->attaque($perso2);
+$perso2->attaque($perso1);
+```
+Cela nous affiche avec un **var_dump** et le 'echo' 
+
+<img src="http://img4.hostingpics.net/pics/858414Capturedecran20161016a134228.png" border="0" alt="Hebergeur d'image" />
