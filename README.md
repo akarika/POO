@@ -142,7 +142,7 @@ $perso1->setNom("Heroe");
 ```
 Si nous faisons un **var_dump**(*$perso1*)
 
-<img src="http://img4.hostingpics.net/pics/404410Capturedecran20161016a115020.png"/>
+<a target="_blank" href="http://www.hostingpics.net" title="Hebergeur d'image"><img src="http://img15.hostingpics.net/pics/719776Capturedecran20161016a115020.png" border="0" alt="Hebergeur d'image" /></a>
 
 Nous avons bien modifié la valeur de l'attribut **$nom**.
 Si vous essayez d'accéder ou modifier une propriétée **private** sans avoir créé un **getter** ou **setter** vous avez ce type d'erreur
@@ -249,7 +249,7 @@ $perso2 = new Personnage("Power",35);
 
 Si nous faisons un **var_dump**(*$perso1*) et **var_dump**(*$perso2*)
 
-<img src="http://img4.hostingpics.net/pics/150281Capturedecran20161016a131531.png" border="0" alt="Hebergeur d'image" />
+<img src="http://img15.hostingpics.net/pics/151930Capturedecran20161016a132736.png" border="0" alt="Hebergeur d'image" />
 
 Comment faire interagir les deux personnages ?
 
