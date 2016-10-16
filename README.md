@@ -54,13 +54,13 @@ Les attributs de **visibilité** indique à une **méthode** ou **propriétés**
 
 ```protected``` 	 accessible à **l'intérieur** de la classe et des classes **héritées**
 
-_Exemple conception _ :
+_Exemple conception_ :
 
 ```php
 class Personnage{
 	private $vie = 100;
 	private $soin = 30;
-	public $nom = "heroe";
+	private $nom ;
 	public $atk = 10;
 }
 ```
@@ -110,16 +110,111 @@ Une classe peut-être vu comme le modèle .
 
 ###Accéder aux attributs et méthodes 
 
-_Pour appeler un attribut ou méthode_ :
+_Pour appeler un attribut ou une méthode_ :
 
 $nomObjet**->**attribut;
-Affichons le nom de l'objet perso1
+
+Affichons l'attaque de l'objet perso1
+
 ```php
-echo $perso1->nom;
-//heroe
+echo $perso1->atk;
+//10
 ```
 
+$nomObjet**->**methode();
 
+Nous utilisons le **getter**(accesseur) `getVie()` pour accéder à l'attribut `$vie` qui est **private**
+
+```php
+echo $perso1->getVie();
+//100
+``` 
+L'objet $perso1 n' pas de nom donnons lui en un .Nous utiliserons le **setter**(mutateur) `setVie()`
+
+```php
+$perso1->setNom("Heroe");
+```
+Si nous faisons un **var_dump**(*$perso1*)
+
+<img src="http://img4.hostingpics.net/pics/404410Capturedecran20161016a115020.png"/>
+
+Nous avons bien modifié la valeur de l'attribut **$nom**.
+Si vous essayez d'accéder ou modifier une propriétée **private** sans avoir créé un **getter** ou **setter** vous avez ce type d'erreur
+```php
+echo $perso1->vie;
+```
+<img src="http://img4.hostingpics.net/pics/570770Capturedecran20161016a115339.png" />
+
+#### Pourquoi mettre les propriétés en private ? 
+
+
+*Le principe d'encapsulation*
+
+L'un des gros avantages de la POO est que l'on peut **masquer** le code à **l'utilisateur** (l'utilisateur est ici celui qui se servira de la classe, pas celui qui chargera la page depuis son navigateur).
+**L'encapsulation** est un mécanisme consistant à rassembler les données et les méthodes au sein d'une structure en cachant l'implémentation de l'objet, c'est-à-dire en **empêchant** l'accès aux **données** par un autre moyen que les **services**(méthodes) proposés.
+
+
+L'utilisateur **d'une classe** n'a pas forcément à savoir de quelle façon sont structurées les données dans l'objet, cela signifie qu'un utilisateur n'a pas à connaître l'implémentation. Ainsi, en **interdisant** l'utilisateur de **modifier** directement les attributs, et en **l'obligeant** à utiliser les fonctions **définies** pour les modifier (appelées interfaces), on est capable de **s'assurer** de l'intégrité des données (on pourra par exemple **s'assurer** que le **type** des données fournies est conforme à nos attentes, ou encore que les données se trouvent bien dans l'intervalle attendu). 
+
+Reprenons tous le code de la class Personnage documenté 
+
+```php
+
+
+/**
+ * Class Personnage notre modéle de personnage
+ */
+class Personnage
+{
+    /**
+     * @var int
+     */
+    private $vie = 100;
+    /**
+     * @var int
+     */
+    private $soin = 30;
+    /**
+     * @var nom à définir avec le setteur
+     */
+    private $nom;
+    /**
+     * @var int
+     */
+    public $atk = 10;
+
+    /**
+     * @return int retourne la vie
+     */
+    public function getVie() :int
+    {
+        return $this->vie;
+    }
+
+    /**
+     * @param $vie prend un int 
+     * @return int|string
+     */
+    public function setVie($vie)
+
+    {
+        return is_int($vie) ? $this->vie = $vie : "Veuillez utilisé des lettres";
+    }
+
+    /**
+     * @param $nom prend une string 
+     * @return int|string
+     */
+    public function setNom($nom)
+    {
+        return is_string($nom) ? $this->nom = $nom : "Veuillez utilisé des chiffres";
+
+    }
+
+}
+$perso1 = new personnage;
+```
+IL est très fortement conseillé de **documenter** .Un code bien **documenté** est un code facile à **comprendre**. De plus les IDE modernes sont capable de comprendre et lire ces commentaire 
 
 
 
