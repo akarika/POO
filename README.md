@@ -268,6 +268,6 @@ class Personnage{
 $perso1->attaque($perso2);
 $perso2->attaque($perso1);
 ```
-Cela nous affiche avec un **var_dump** et le 'echo' 
+Cela nous affiche avec un **var_dump** et le `echo`
 
-<img src="http://img4.hostingpics.net/pics/858414Capturedecran20161016a134228.png" border="0" alt="Hebergeur d'image" />
+<img src="http://img4.hostingpics.net/pics/622442Capturedecran20161016a134228.png" border="0" alt="Hebergeur d'image" />
