@@ -16,7 +16,7 @@ class personnage
     //private  accesible dans la classe UNIQUEMENT
     protected $nom;
     //accessible dans les classes qui héritent et dans la classe UNIQUEMENT
-
+    const VIE_MAX  = 100;
     /**
      * @return mixed
      */
@@ -48,7 +48,7 @@ private function empecher_vie_negatif(){
 
 
     //méthoes -> fonction
-    public function __construct($nom)
+    public function __construct($nom="")
     {
         $this->nom = $nom;
     }
@@ -65,7 +65,7 @@ private function empecher_vie_negatif(){
     public function regenerer($vie = null)
     {
         if (is_null($vie)) {
-             $this->vie = 100;
+             $this->vie = self::VIE_MAX;
         } else {
              $this->vie += $vie;
         }
@@ -85,6 +85,11 @@ private function empecher_vie_negatif(){
         $cible->vie -= $this->atk;
         $cible->empecher_vie_negatif();
     }
+
+
+}
+class blog {
+   public $titre = "";
 
 
 }
