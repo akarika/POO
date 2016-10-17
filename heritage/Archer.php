@@ -10,7 +10,7 @@ class Archer extends Personnage
 {
     protected $vie = 40;
 
-    public function __construct($nom)
+    public function __construct($nom,$atk)
     {
         $this->vie = $this->vie/2;
         parent::__construct($nom);

@@ -271,3 +271,39 @@ $perso2->attaque($perso1);
 Cela nous affiche avec un **var_dump** et le `echo`
 
 <img src="http://img4.hostingpics.net/pics/622442Capturedecran20161016a134228.png" border="0" alt="Hebergeur d'image" />
+
+###Les propriétés et les méthodes statiques
+
+ Elles peuvent être utilisées sans avoir besoin d'instancier la classe, On peut y accéder directement en utilisant le nom de la class
+ 
+ _En gros ce sont des attributs et méthodes propres à la classe_ .
+ 
+ - Créons une méthode statique pour régénérer la vie :
+ 
+ ````php
+ class Personnage{
+    ...
+    /**
+    *@var int l'attribut $soin passe en statique afin d'être utilisé uniquement par la classe
+    */
+    private static $soin = 30;
+    
+     /**
+     * @param $personnage est le personnage a soigner
+     */
+      public static function regeneration($personnage)
+        {
+                                //Personnage:: , self:: fait référence à la classe elle-même
+            $personnage->vie += self::$soin;
+    
+            if ($personnage->vie > 100) {
+                $personnage->vie = 100;
+            }
+            echo "{$personnage->getNom()} a maintenant {$personnage->vie} de vie.";
+        }
+ }
+ 
+ ```
+
+ 
+ 

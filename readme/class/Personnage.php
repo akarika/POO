@@ -2,32 +2,28 @@
 
 /**
  * Created by PhpStorm.
- * User: remyroux
- * Date: 16/10/2016
- * Time: 01:00
- */
-
-/**
- * Class Personnage notre modéle de personnage
+ * User: tiw
+ * Date: 17/10/2016
+ * Time: 09:53
  */
 class Personnage
 {
     /**
      * @var int
      */
-    private $vie = 100;
+    protected $vie = 100;
     /**
-     * @var int
+     * @var int propriété propre à la class
      */
-    private $soin = 30;
+    private static $soin = 30;
     /**
      * @var nom à définir avec le setteur
      */
-    private $nom;
+    protected $nom;
     /**
      * @var int
      */
-    private $atk = 10;
+    protected $atk = 10;
 
     public function __construct($name, $atk)
     {
@@ -39,7 +35,7 @@ class Personnage
     /**
      * @return int retourne la vie
      */
-    public function getVie() :int
+    public function getVie()
     {
         return $this->vie;
     }
@@ -72,7 +68,7 @@ class Personnage
         return $this->nom;
     }
 
-    public function getAtk(): int
+    public function getAtk()
     {
         return $this->atk;
     }
@@ -89,19 +85,18 @@ class Personnage
         echo "{$this->getNom()}  attaque {$attaqué->getNom()}  avec {$this->getAtk()} d'attaque</br>";
     }
 
-    public static function regeneration(){
+    //création méthode propre à la class
+    /**
+     * @param $personnage
+     */
+    public static function regeneration($personnage)
+    {
+        $personnage->vie += self::$soin;
 
+        if ($personnage->vie > 100) {
+            $personnage->vie = 100;
+        }
+        echo "{$personnage->getNom()} a maintenant {$personnage->vie} de vie.";
     }
 
 }
-
-$perso1 = new personnage("Heroe", 20);
-$perso2 = new Personnage("Power", 35);
-
-var_dump($perso1);
-var_dump($perso2);
-
-$perso1->attaque($perso2);
-$perso2->attaque($perso1);
-var_dump($perso1);
-var_dump($perso2);
