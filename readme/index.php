@@ -24,7 +24,7 @@ $perso2->attaque($perso1);
 
 Personnage::regeneration($perso1);
 var_dump($perso1);
-$monstre = new Monstre("montre1",5,20);
-var_dump($monstre);
-$monstre->attaque($perso1);
+$monstre1 = new Monstre("petit_monstre",10,50);
+var_dump($monstre1);
+$monstre1->attaque($perso1);
 var_dump($perso1);

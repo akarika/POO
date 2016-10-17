@@ -8,8 +8,7 @@
  */
 class Monstre extends Personnage
 {
-    protected $vie;
-    protected $atk;
+
 
 
     public function __construct($nom, $atk, $vie)

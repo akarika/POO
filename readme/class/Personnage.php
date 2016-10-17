@@ -15,7 +15,7 @@ class Personnage
     /**
      * @var int propriété propre à la class
      */
-    private static $soin = 30;
+    protected static $soin = 30;
     /**
      * @var nom à définir avec le setteur
      */
