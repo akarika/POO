@@ -230,7 +230,8 @@ _En gros ce sont des attributs et méthodes propres à la classe_ .
 
 - Créons une méthode statique pour régénérer la vie :
 
-```php  
+```php
+
 class Personnage{     
 ...
 /**
@@ -252,6 +253,7 @@ echo "{$personnage->getNom()} a maintenant {$personnage->vie} de vie.";
 //Appelle de la méthode de classe régénération sur l'objet $perso1  Personnage::régénération($perso1);
 
 ```
+
 Vérifions cela :
 
 <img src="http://img15.hostingpics.net/pics/591454Capturedecran20161017a223435.png" />
