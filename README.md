@@ -340,13 +340,56 @@ Mais souvenez vous !!!
 ```protected``` 	 accessible à **l'intérieur** de la classe et des classes **héritées** niveau moyen de sécurité
 
 
-Donc nous devons passer les attributs et méthodes de **private** en **protected** .
+Donc nous devons passer les attributs et méthodes de la classe Personnage de **private** en **protected** .
 
+Ici 
+```php
+class Monstre{
+    //nous changeons le construteur de la class Monstre pour régler la vie
+    public function __construct($nom, $atk, $vie)
+    {   
+        parent::__construct($nom, $atk);
+        $this->vie = $vie;
+    }
+}
+    //nous devons changer la création de l'objet
+$monstre1 = new Monstre("petit_monstre",20,40);
+```
+###Autoloader
+_Ou comment charger dynamiquement les classes_
 
+Nous commençons à avoir plusieurs fichier classes , dans un gros projet cela peut repésener des centaines de classes différentes.
+Heureusement l'autoloading nous permet de reméditer à ce problème en incluant les classes dès que l'on en a besoin.
 
+ il est possible de créer et d'enregistrer des fonctions manuellement en utilisant **spl_autoload_register**
 
+```php
+/**
+ * Class Autoloader autoloder de class
+ */
+class Autoloader
+{
+    /**
+     * Enregister notre autoloader
+     */
+    static function register(){
+        spl_autoload_register(array(__CLASS__,'autoload'));
+    }
 
+    /**
+     * @param $class le nom de la calsse à charger
+     */
+    static function autoload($class){
+        require "class/".$class.".php";
+    }
+}
+```
+On utilise ici une classe avec des méthodes statique pour une meilleur organisation. On peut alors lancer notre autoloader simplement.
 
+```php
+require 'autoloader.php';
+Autoloader::register();
+```
 
 
  

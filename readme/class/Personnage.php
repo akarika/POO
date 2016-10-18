@@ -86,9 +86,9 @@ class Personnage
     }
 
     //création méthode propre à la class
-    /**
-     * @param $personnage
-     */
+
+
+
     public static function regeneration($personnage)
     {
         $personnage->vie += self::$soin;
