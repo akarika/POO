@@ -1,5 +1,5 @@
 <?php
-
+namespace Load;
 /**
  * Created by PhpStorm.
  * User: tiw
@@ -23,6 +23,8 @@ class Autoloader
      * @param $class le nom de la calsse à charger
      */
     static function autoload($class){
+        $class= str_replace('War\\','', $class);
+        $class= str_replace('\\','/', $class);
         require "class/".$class.".php";
     }
 }

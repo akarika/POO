@@ -6,7 +6,7 @@
  * Date: 15/10/2016
  * Time: 12:49
  */
-
+namespace Tutoriel;
 /**
  * Class Form
  * permet de générer un formulaire simplement

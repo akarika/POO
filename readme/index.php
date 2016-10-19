@@ -1,5 +1,5 @@
 <?php
-
+use \War\Load;
 /**
  * Created by PhpStorm.
  * User: remyroux
@@ -13,8 +13,8 @@
 /**
  * charge tout nos classes automatiquement ainsi que mes méthodes et attributs
  */
-require 'autoloader.php';
-Autoloader::register();
+require 'War/Autoloader.php';
+\War\Load::register();
 
 $perso1 = new personnage("Heroe", 20);
 $perso2 = new Personnage("Power", 35);
