@@ -1,5 +1,5 @@
 <?php
-namespace War\Games;
+namespace War;
 /**
  * Created by PhpStorm.
  * User: tiw

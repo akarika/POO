@@ -1,15 +1,24 @@
 <?php
-namespace Load;
+namespace War;
 /**
  * Created by PhpStorm.
  * User: tiw
  * Date: 17/10/2016
  * Time: 09:54
  */
+    /**
+     * Enregister notre autoloader
+     */
 
+
+    /**
+     * Enregistre notre autoloader
+     */
 /**
- * Class Autoloader autoloder de class
+ * Class Autoloader
+ * @package Tutoriel
  */
+
 class Autoloader
 {
     /**
@@ -20,12 +29,13 @@ class Autoloader
     }
 
     /**
-     * @param $class le nom de la calsse à charger
+     * @param $class le nom de la classe à charger
      */
     static function autoload($class){
-        $class= str_replace('War\\','', $class);
-        $class= str_replace('\\','/', $class);
-        require "class/".$class.".php";
+        var_dump($class);
+        var_dump(__DIR__);
+        var_dump(__NAMESPACE__);
+        require __NAMESPACE__.'/'.$class.".php";
     }
 }
 
