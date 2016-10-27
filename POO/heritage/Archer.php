@@ -26,6 +26,3 @@ class Archer extends Personnage
     }
 }
 
-class arbalete extends Archer {
-
-}
