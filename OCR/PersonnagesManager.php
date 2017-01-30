@@ -1,86 +1,7 @@
 <?php
-class Personnage
-{
-    private $_id;
-    private $_nom;
-    private $_forcePerso;
-    private $_degats;
-    private $_niveau;
-    private $_experience;
+include "autoload.php";
+Autoloader::register();
 
-    // Un tableau de données doit être passé à la fonction (d'où le préfixe « array »).
-    public function hydrate(array $donnees)
-    {
-
-    }
-
-    public function id() { return $this->_id; }
-    public function nom() { return $this->_nom; }
-    public function forcePerso() { return $this->_forcePerso; }
-    public function degats() { return $this->_degats; }
-    public function niveau() { return $this->_niveau; }
-    public function experience() { return $this->_experience; }
-
-    public function setId($id)
-    {
-        // L'identifiant du personnage sera, quoi qu'il arrive, un nombre entier.
-        $this->_id = (int) $id;
-    }
-
-    public function setNom($nom)
-    {
-        // On vérifie qu'il s'agit bien d'une chaîne de caractères.
-        // Dont la longueur est inférieure à 30 caractères.
-        if (is_string($nom) && strlen($nom) <= 30)
-        {
-            $this->_nom = $nom;
-        }
-    }
-
-    public function setForcePerso($forcePerso)
-    {
-        $forcePerso = (int) $forcePerso;
-
-        // On vérifie que la force passée est comprise entre 0 et 100.
-        if ($forcePerso >= 0 && $forcePerso <= 100)
-        {
-            $this->_forcePerso = $forcePerso;
-        }
-    }
-
-    public function setDegats($degats)
-    {
-        $degats = (int) $degats;
-
-        // On vérifie que les dégâts passés sont compris entre 0 et 100.
-        if ($degats >= 0 && $degats <= 100)
-        {
-            $this->_degats = $degats;
-        }
-    }
-
-    public function setNiveau($niveau)
-    {
-        $niveau = (int) $niveau;
-
-        // On vérifie que le niveau n'est pas négatif.
-        if ($niveau >= 0)
-        {
-            $this->_niveau = $niveau;
-        }
-    }
-
-    public function setExperience($exp)
-    {
-        $exp = (int) $exp;
-
-        // On vérifie que l'expérience est comprise entre 0 et 100.
-        if ($exp >= 0 && $exp <= 100)
-        {
-            $this->_experience = $exp;
-        }
-    }
-}
 
 class PersonnagesManager
 {
@@ -93,37 +14,36 @@ class PersonnagesManager
 
     public function add(Personnage $perso)
     {
-        $q = $this->_db->prepare('INSERT INTO personnages(nom, forcePerso, degats, niveau, experience) VALUES(:nom, :forcePerso, :degats, :niveau, :experience)');
-
-        $q->bindValue(':nom', $perso->nom());
-        $q->bindValue(':forcePerso', $perso->forcePerso(), PDO::PARAM_INT);
-        $q->bindValue(':degats', $perso->degats(), PDO::PARAM_INT);
-        $q->bindValue(':niveau', $perso->niveau(), PDO::PARAM_INT);
-        $q->bindValue(':experience', $perso->experience(), PDO::PARAM_INT);
+        $q = $this->_db->prepare('INSERT INTO personnages( id,nom, forcePerso, degats, experience) VALUES(:id,:nom, :forcePerso, :degats, :experience)');
+        $q->bindValue(':nom', $perso->getNom(),PDO::PARAM_STR);
+        $q->bindValue(':id', $perso->getId(),PDO::PARAM_STR);
+        $q->bindValue(':forcePerso', $perso->getForcePerso(), PDO::PARAM_INT);
+        $q->bindValue(':degats', $perso->getDegats(), PDO::PARAM_INT);
+        $q->bindValue(':experience', $perso->getExperience(), PDO::PARAM_INT);
 
         $q->execute();
     }
 
     public function delete(Personnage $perso)
     {
-        $this->_db->exec('DELETE FROM personnages WHERE id = '.$perso->id());
+        $this->_db->exec('DELETE FROM personnages WHERE id = '.$perso->getId());
     }
 
     public function get($id)
     {
-        $id = (int) $id;
+        /*$id = (int) $id;*/
 
-        $q = $this->_db->query('SELECT id, nom, forcePerso, degats, niveau, experience FROM personnages WHERE id = '.$id);
+        $q = $this->_db->query('SELECT id, nom, forcePerso, degats, experience FROM personnages WHERE id = '.$id);
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
 
-        return new Personnage($donnees);
+        var_dump( new Personnage($donnees));
     }
 
     public function getList()
     {
         $persos = [];
 
-        $q = $this->_db->query('SELECT id, nom, forcePerso, degats, niveau, experience FROM personnages ORDER BY nom');
+        $q = $this->_db->query('SELECT id, nom, forcePerso, degats, experience FROM personnages ORDER BY nom');
 
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
         {
@@ -135,14 +55,11 @@ class PersonnagesManager
 
     public function update(Personnage $perso)
     {
-        $q = $this->_db->prepare('UPDATE personnages SET forcePerso = :forcePerso, degats = :degats, niveau = :niveau, experience = :experience WHERE id = :id');
+        $q = $this->_db->prepare('UPDATE personnages SET forcePerso = :forcePerso, degats = :degats,  experience = :experience WHERE id = :id');
 
-        $q->bindValue(':forcePerso', $perso->forcePerso(), PDO::PARAM_INT);
-        $q->bindValue(':degats', $perso->degats(), PDO::PARAM_INT);
-        $q->bindValue(':niveau', $perso->niveau(), PDO::PARAM_INT);
-        $q->bindValue(':experience', $perso->experience(), PDO::PARAM_INT);
-        $q->bindValue(':id', $perso->id(), PDO::PARAM_INT);
-
+        $q->bindValue(':forcePerso', $perso->getForcePerso(), PDO::PARAM_INT);
+        $q->bindValue(':degats', $perso->getDegats(), PDO::PARAM_INT);
+        $q->bindValue(':experience', $perso->getExperience(), PDO::PARAM_INT);
         $q->execute();
     }
 
@@ -153,16 +70,23 @@ class PersonnagesManager
 }
 
 $perso = new Personnage([
+    'id'=>56,
     'nom' => 'Victor',
-    'forcePerso' => 5,
-    'degats' => 0,
-    'niveau' => 1,
-    'experience' => 0
+    'forcePerso' => 11,
+    'degats' => 21,
+    'experience' => 50
+]);$perso2 = new Personnage([
+    'id'=>23,
+    'nom' => 'diER',
+    'forcePerso' => 11,
+    'degats' => 22,
+    'experience' => 50
 ]);
-var_dump($perso);
-$db = new PDO('mysql:host=localhost;dbname=test', 'root', 'root');
-$manager = new PersonnagesManager($db);
 
+$db = new PDO('mysql:host=localhost;dbname=ocr_poo_4;charset=utf8', 'root', 'root');
+$manager = new PersonnagesManager($db);
 $manager->add($perso);
-$manager->getList();
-var_dump($manager);
+$manager->add($perso2);
+$manager->delete($perso2);
+
+var_dump($perso2);
