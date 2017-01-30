@@ -6,14 +6,51 @@
  * Date: 26/10/2016
  * Time: 21:02
  */
+/*
+ * Connexion bdd
+ */
+try
+{
+    // On se connecte à MySQL
+    $bdd = new PDO('mysql:host=localhost;dbname=ocr_poo_4;charset=utf8', 'root', 'root');
+}
+catch(Exception $e)
+{
+    // En cas d'erreur, on affiche un message et on arrête tout
+    die('Erreur : '.$e->getMessage());
+}
+
+
+
+// On admet que $db est un objet PDO.
+$request = $bdd->query('SELECT nom, forcePerso, degats, experience FROM personnages');
+
+while ($donnees = $request->fetch(PDO::FETCH_ASSOC))
+{
+    $perso = new Personnage($donnees);
+var_dump($donnees);
+    echo $perso->getNom(), ' a ', $perso->getForcePerso(), ' de force, ', $perso->getDegats(), ' de dégâts, ', $perso->getExperience();
+}
+
+/*
+ *
+ */
 class Personnage
 {
-    private $_id;
+
     private $_nom;
     private $_forcePerso;
     private $_degats;
-    private $_niveau;
     private $_experience;
+
+
+
+    public function __construct(array $data)
+    {
+        $this->hydrate($data);
+
+    }
+
 
     public function hydrate(array $donnees)
     {
@@ -152,4 +189,3 @@ class Personnage
 
 
 }
-
