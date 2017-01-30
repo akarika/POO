@@ -390,6 +390,52 @@ On utilise ici une classe avec des méthodes statique pour une meilleur organisa
 require 'autoloader.php';
 Autoloader::register();
 ```
+###HYDRATATION
+
+hydrater un objet revient à lui fournir des données correspondant à ses attributs pour qu'il assigne les valeurs souhaitées à ces derniers
 
 
+nous créons un tableau dont chaque clé correspond à un attribut de notre objet
+```php
+$tab = [
+         'nom' => 'Didier',
+         'age' => 55,
+         'experience' => 20
+       ];
+  ```
+  Le construteur a un array comme argument 
+   ```php
+$el = new Objet($tab);
+
+```
+la méthode hydrate va le parcourir et "hydrater" l'objet
+
+ ```php
+ public function hydrate(array $donnees)
+ {
+   foreach ($donnees as $key => $value)
+   {
+     // On récupère le nom du setter correspondant à l'attribut.
+     $method = 'set'.ucfirst($key);
+         
+     // Si le setter correspondant existe.
+     if (method_exists($this, $method))
+     {
+       // On appelle le setter.
+       $this->$method($value);
+     }
+   }
+ }
+```
+On modifie notre construteur qui prend un tableau commme argument
+
+```php
+
+ public function __construct(array $data)
+    {
+        $this->hydrate($data);
+
+    }
+ ```
+ 
  
